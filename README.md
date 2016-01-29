@@ -20,5 +20,5 @@ See the [Wiki Page] (https://github.com/esoubies/OptiTools/wiki).
   
 ### Author
 
-  Emmanuel Soubies (esoubies@gmail.com)
+  *Emmanuel Soubies (esoubies@gmail.com) -- 2016*
 
