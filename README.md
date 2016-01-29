@@ -5,7 +5,7 @@
 1. **Operators**: constructs operators (*e.g.* convolution, gradient ...),
 2. **Functional**: constructs objective functional (*e.g.* least square functional, norms ...) to minimize. They can be combined                       with operators,
 3. **Algorithms**: optimization algorithms which can be used to minimize the constructed functional,
-4. **Example**: some examples showing how to use this material are provided.
+4. **Examples**: some examples showing how to use this material are provided.
 
 ### Get started
   In order to use this package, you need to download all the files (and folders), put them at the wanted location, and run the *install.m* script:
