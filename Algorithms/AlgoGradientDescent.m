@@ -13,7 +13,6 @@ function [xopt,infos]=AlgoGradientDescent(x0,F,params)
 %                         .FTol    -> stopping criteria on the relative F difference (default 1e-3)
 %                         .gpu     -> if 1 then run the algorithm on GPU (default 0)
 %                         .verbose -> if 1 then print main steps (default 0)
-%                         .clearTmp -> if 1 then the tmp directory is cleared at the end of the algorithm (default 1)
 %
 %          Note: if the Functional F is gradient Lipschitz the step has to be lower than 2/L where
 %                L is the Lipschitz constant of the gradient. The optimal choice is 1/L (see [1]).
@@ -34,12 +33,6 @@ function [xopt,infos]=AlgoGradientDescent(x0,F,params)
 %
 % -- Emmanuel Soubies (2015)
 %------------------------------------------------
-
-% -- Clear the tmp folder (in case that a previous algorithm did not stop correctly)
-if ~isfield(params,'clearTmp') || params.clearTmp==1
-	pid=feature('getpid');
-	delete(['/home/esoubies/Desktop/CodeThese/Optimization/tmp/*',num2str(pid),'*']);
-end
 
 % -- Test if the functional is differentiable
 if ~isfield(F,'grad')
@@ -128,9 +121,4 @@ if params.verbose
 	fprintf('===============================================\n');
 end
 
-% -- Clear the tmp folder
-if ~isfield(params,'clearTmp') || params.clearTmp==1
-	pid=feature('getpid');
-	delete(['/home/esoubies/Desktop/CodeThese/Optimization/tmp/*',num2str(pid),'*']);
-end
 end
