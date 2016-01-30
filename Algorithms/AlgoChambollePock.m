@@ -32,7 +32,6 @@ function [xopt,infos]=AlgoChambollePock(x0,F,K,w,G,params)
 %                         .gpu          -> if 1 then run the algorithm on GPU (default 0)
 %                         .verbose      -> if 1 then print main steps (default 0)
 %                         .pathSaveTemp -> if non empty, save intermediate estimates during the computation at the given location
-%                         .clearTmp     -> if 1 then the tmp directory is cleared at the end of the algorithm (default 1)
 %
 %          Note: 1- when theta=1, parameters sig and tau have to verrify
 %                         sig*tau*||K||^2 < 1
@@ -58,12 +57,6 @@ function [xopt,infos]=AlgoChambollePock(x0,F,K,w,G,params)
 %
 % -- Emmanuel Soubies (2015)
 %------------------------------------------------
-
-% -- Clear the tmp folder (in case that a previous algorithm did not stop correctly)
-if ~isfield(params,'clearTmp') || params.clearTmp==1
-	pid=feature('getpid');
-	delete(['/home/esoubies/Desktop/CodeThese/Optimization/tmp/*',num2str(pid),'*']);
-end
 
 % -- Test the properties of the functions F, G and the operator K
 if ~isfield(F,'proxFench')
@@ -244,11 +237,6 @@ if params.verbose
 	fprintf('===============================================\n');
 end
 
-% -- Clear the tmp folder
-if ~isfield(params,'clearTmp') || params.clearTmp==1
-	pid=feature('getpid');
-	delete(['/home/esoubies/Desktop/CodeThese/Optimization/tmp/*',num2str(pid),'*']);
-end
 % -- Clear the saved OptivarTemp
 if isfield(params,'pathSaveTemp')   
 	delete([params.pathSaveTemp,'OptivarTemp.mat']);	
