@@ -12,7 +12,7 @@
 dir=cd;
 % -- Update the Matlab path
 addpath([dir,'/Algorithms']);
-addpath([dir,'/Functional']);
+addpath([dir,'/Functionals']);
 addpath([dir,'/Operators']);
 addpath([dir,'/Examples']);
 
