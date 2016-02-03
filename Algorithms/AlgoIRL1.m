@@ -45,7 +45,7 @@ function [xopt,infos]=AlgoIRL1(x0,F1,F2,w,params)
 %                                      ('Max Iter' or 'Stationarity')
 %                         .nbIter   -> number of iterates performed
 %                         .minimizedFunc -> infos about the minimized functional
-%                     Note: the parameters w, gamFBS, xTol, FTol and gpu are copied in the info structure
+%                     Note: the parameters w, G, paramsFBS, xTol, FTol and gpu are copied in the info structure
 %                           (for reproductibility)
 %
 % References :
@@ -181,14 +181,11 @@ if (it==params.maxiter)
 else
 	infos.stopRule='Stationarity';
 end
+infos.G=params.G;
 infos.nbIter=it;
 infos.xTol=params.xTol;
 infos.FTol=params.FTol;
-if isfield(params,'gamFBS')
-	infos.gamFBS=params.gamFBS;
-else
-	infos.gamFBS='computed using the lipschitz constant of grad(F1)';
-end
+infos.paramsFBS=paramsFBS;
 infos.cmptCF=params.cmptCF;
 infos.F2weight=w;
 infos.minimizedFunc=['F1 : ',F1.name,' / F2 : ',F2.name];

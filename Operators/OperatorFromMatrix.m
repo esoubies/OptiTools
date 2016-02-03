@@ -10,10 +10,9 @@ function [Op]=OperatorFromMatrix(A)
 %                 .eval   -> Op.eval(x) evaluates the operator at x
 %                 .adj    -> Op.adj(x) evaluates the adjoint at x     
 %                 .AtA    -> Op.AtA(x) evaluates the adjoint at Op.eval(x)     
-%                 .nAtA   -> norm of A^tA 
 %                 .norm   -> norm of the operator ||A||                        
 %                 .name   -> name of the operator
-%                 .nai    -> raw vector containing the norm of the columns of A
+%                 .nai    -> colunm vector containing the norm of the columns of A
 %
 %          Note : works also for complex valued A
 %
@@ -35,14 +34,11 @@ Op.adj=@(x) A'*x;
 % ===== AtA Definition =====
 Op.AtA=@(x) AA*x;
 
-% ===== Norm of AtA =====
-Op.nAtA=norm(A'*A);
-
 % ===== Norm of A =====
 Op.norm=norm(A);
 
 % ===== Norm of the columns of A =====
-Op.nai=sqrt(sum(abs(A).^2,1));
+Op.nai=sqrt(sum(abs(A).^2,1))';
 
 % ===== Name =====
 Op.name='Operator From Matrix';

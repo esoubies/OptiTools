@@ -75,7 +75,7 @@ params.gam=1/F.lip;    % gamma parameter of the FBS algorithm (must be < to 1/L 
 					   % field nAtA of the operator
 
 % -- Construct the CEL0 penalty
-P=FuncCEL0(Op.nai',lamb,[]);
+P=FuncCEL0(Op.nai,lamb,[]);
 
 % -- Minimization of F + P
 if strcmp(alg,'fbs')

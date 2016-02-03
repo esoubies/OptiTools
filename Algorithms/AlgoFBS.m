@@ -36,7 +36,7 @@ function [xopt,infos]=AlgoFBS(x0,F,G,w,params)
 %                                      ('Max Iter' or 'Stationarity')
 %                         .nbIter   -> number of iterates performed
 %                         .minimizedFunc -> infos about the minimized functional
-%                     Note: the parameters w, gam, fista, xTol, FTol and gpu are copied in the info structure
+%                     Note: the parameters w, gam, fista, xTol, FTol, cmptCF and gpu are copied in the info structure
 %                           (for reproductibility)
 %
 % References :

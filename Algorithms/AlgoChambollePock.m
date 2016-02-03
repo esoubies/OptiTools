@@ -48,7 +48,7 @@ function [xopt,infos]=AlgoChambollePock(x0,F,K,w,G,params)
 %                                      ('Max Iter' or 'Stationarity')
 %                         .nbIter   -> number of iterates performed
 %                         .minimizedFunc -> infos about the minimized functional
-%                     Note: the parameters w, sig, tau, theta, gam, var, xTol, FTol and gpu are copied in the info structure
+%                     Note: the parameters w, sig, tau, theta, gam, var, xTol, FTol, cmptCF and gpu are copied in the info structure
 %                           (for reproductibility)
 %
 % References :
