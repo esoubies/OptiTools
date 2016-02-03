@@ -3,7 +3,7 @@
   This Package contains Matlab routines for optimization. There is 4 folders:
   
 1. **Operators**: constructs operators (*e.g.* convolution, gradient ...),
-2. **Functional**: constructs objective functional (*e.g.* least square functional, norms ...) to minimize. They can be combined                       with operators,
+2. **Functionals**: constructs objective functional (*e.g.* least square functional, norms ...) to minimize. They can be combined                       with operators,
 3. **Algorithms**: optimization algorithms which can be used to minimize the constructed functional,
 4. **Examples**: some examples showing how to use this material are provided.
 
