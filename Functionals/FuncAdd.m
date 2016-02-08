@@ -1,6 +1,6 @@
 function [F]=FuncAdd(F1,F2,w)
 %------------------------------------------------
-% function [F]=FuncAdd(F1,F2)
+% function [F]=FuncAdd(F1,F2,w)
 %
 % Constructs a functional which is the sum of the two given functionals.
 %
