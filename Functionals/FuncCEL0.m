@@ -57,7 +57,7 @@ end
 
 % ===== Subgrad definition =====
 if ~struct  % classical CEL0
-	F.subgrad = @(x) (abs(x)<bound).*(-nai2.*x+sign(x).*bound2) + (abs(x)==0).*bound2;
+	F.subgrad = @(x) (abs(x)>=eps).*(abs(x)<bound).*(-nai2.*x+sign(x).*bound2) + (abs(x)<eps).*bound2;
 end
 
 % ===== Name =====

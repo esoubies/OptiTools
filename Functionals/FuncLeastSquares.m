@@ -30,7 +30,9 @@ if isempty(A)
 end
 
 % -- Precomputed variables
-Ad=A.adj(d);
+if isfield(A,'adj')
+	Ad=A.adj(d);
+end
 
 % ===== Function definition =====
 F.eval = @(x) 0.5*norm(reshape(A.eval(x)-d,[],1),'fro')^2;
@@ -55,11 +57,14 @@ if strcmp(A.name,'Operator TIRF-1D')
 	F.prox = @(gam,y) proxOpTIRF1D(gam,y);
 end
 % -- If the given operator is the Convolution operator
-if strcmp(A.name,'Operator Convolution')
-	H=fft2(A.kernel);        % Fourier Transform of the kernel K
-	H2=abs(H).^2;
-	fftdHe=conj(H).*fft2(d);
-	F.prox = @(gam,y)  real(ifft2((gam*fftdHe  + fft2(y))./(gam*H2+1)));
+if strcmp(A.name,'Operator Convolution') 
+	if isvector(A.kernel)
+	else
+		H=fft2(A.kernel);        % Fourier Transform of the kernel K
+		H2=abs(H).^2;
+		fftdHe=conj(H).*fft2(d);
+		F.prox = @(gam,y)  real(ifft2((gam*fftdHe  + fft2(y))./(gam*H2+1)));
+	end
 end
 
 % ===== Prox Fenchel definition =====

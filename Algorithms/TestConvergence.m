@@ -17,17 +17,21 @@ function stop=TestConvergence(it,x,xold,Fnew,Fold,params);
 % -- Emmanuel Soubies (2015)
 %------------------------------------------------
 
-% -- Relative x difference
-xdiff=norm(reshape(x-xold,[],1),'fro')/(norm(xold(:),'fro')+eps);
+if ~isfield(params,'onlyMaxIter') || ~params.onlyMaxIter  % if not only the max number of iterates is activated
+	% -- Relative x difference
+	xdiff=norm(reshape(x-xold,[],1),'fro')/(norm(xold(:),'fro')+eps);
 
-% -- Relative F difference
-if ~isfield(params,'cmptCF') || params.cmptCF % if the computation of the cost function is activated 
-	Fdiff=abs(Fnew-Fold)/(abs(Fold)+eps);   % variable + function stationarity
-	stationarity=(xdiff<params.xTol) && (Fdiff<params.FTol);
-else                                        % else only variable stationarity
-	stationarity=(xdiff<params.xTol);
+	% -- Relative F difference
+	if ~isfield(params,'cmptCF') || params.cmptCF % if the computation of the cost function is activated 
+		Fdiff=abs(Fnew-Fold)/(abs(Fold)+eps);     % variable + function stationarity
+		stationarity=(xdiff<params.xTol) && (Fdiff<params.FTol);
+	else                                          % else only variable stationarity
+		stationarity=(xdiff<params.xTol);
+	end
+
+	% -- Check if the stopping rule is reached
+	stop=((stationarity)||(it>=params.maxiter));
+else
+	stop=(it>=params.maxiter);
 end
-
-% -- Check if the stopping rule is reached
-stop=((stationarity)||(it>=params.maxiter));
 end

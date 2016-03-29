@@ -19,7 +19,6 @@ function [xopt,infos]=AlgoIRL1(x0,F1,F2,w,params)
 % Inputs : x0     -> first guess
 %          F1     -> Functional F1
 %          F2     -> Functional F2
-%          G      -> Functional G
 %          w      -> weight parameter (real)
 %          params -> Algorithm parameters: structure with fields
 %                         .G         -> choice of the functional G:
@@ -108,12 +107,12 @@ end
 % -- FBS parameters
 if isfield(params,'paramsFBS')
 	paramsFBS=params.paramsFBS;
-else
-	paramsFBS.fista=1;
 end
 if ~isfield(paramsFBS,'xTol'), paramsFBS.xTol=5e-4; end
 if ~isfield(paramsFBS,'FTol'), paramsFBS.FTol=5e-4; end
 if ~isfield(paramsFBS,'maxiter'), paramsFBS.maxiter=10000; end
+paramsFBS.cmptCF=0;
+paramsFBS.fista=1;
 if ~isfield(paramsFBS,'gam')
 	if isfield(F1,'lip')
 		paramsFBS.gam=1/F1.lip;
@@ -139,7 +138,7 @@ while 1
 	end   
 	[xopt,infosFBS]=AlgoFBS(xopt,F1,l1_norm,1,paramsFBS);  % FISTA algorithm (FBS)
 	if strcmp(infosFBS.stopRule,'Max iter')
-		warning('In AlgoIRL1: The innier FISTA has reached the maximal number of iterates');
+		disp('In AlgoIRL1: The inner FISTA has reached the maximal number of iterates');
 	end
 
 	% -- Convergence test
