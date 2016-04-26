@@ -108,11 +108,11 @@ end
 if isfield(params,'paramsFBS')
 	paramsFBS=params.paramsFBS;
 end
+paramsFBS.cmptCF=0;
+paramsFBS.fista=1;
 if ~isfield(paramsFBS,'xTol'), paramsFBS.xTol=5e-4; end
 if ~isfield(paramsFBS,'FTol'), paramsFBS.FTol=5e-4; end
 if ~isfield(paramsFBS,'maxiter'), paramsFBS.maxiter=10000; end
-paramsFBS.cmptCF=0;
-paramsFBS.fista=1;
 if ~isfield(paramsFBS,'gam')
 	if isfield(F1,'lip')
 		paramsFBS.gam=1/F1.lip;
