@@ -111,7 +111,7 @@ function x=proxOpGrad(gam,y)
 	else
 		G=FuncLeastSquares([],y(ind.i,ind.j,ind.k));	% Least squares functional
 	end
-	F=FuncNorm1([]);           % Norm 1 functional
+	F=FuncNorm1([],[]);           % Norm 1 functional
 	nK=(A.norm)^2;             % Norm of the gradient operator
 	params.tau=0.05;            % algorithm parameters
 	params.sig=1/(nK*params.tau)*0.99;

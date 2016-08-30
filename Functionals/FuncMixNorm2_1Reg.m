@@ -7,7 +7,7 @@ function [F]=FuncMixNorm2_1Reg(A,epsl,varargin)
 % differenciability at 0.
 %
 % Inputs : A    -> Operator (see the Operators folder, default : Identity)
-%          epsl -> regularization parameter (>0) to ahev the differenciability at 0
+%          epsl -> regularization parameter (>0) to have the differenciability at 0 (default 1e-6)
 %          ind  -> (first varargin parameter) structure with fields:
 %                 .i     |   Sub indices of the variable x used to evaluate the functional only on these 
 %                 .j     |-> indices. i, j and k correspond to the 3 dimensions. all the fields have to
@@ -36,6 +36,9 @@ if nargin > 2
 else
 	ind=[];
 end
+if isempty(epsl)
+	epsl=1e-6;
+end
 
 % -- If no operator is given, the Identity is setted
 if isempty(A)
@@ -59,7 +62,10 @@ function y=evaluate(x)
 	else
 		u=A.eval(x(ind.i,ind.j,ind.k));
 	end
-	if length(size(u))==3
+	if length(size(u))==2
+		% 1D variable
+		y=sum(sqrt(u.^2 + epsl));
+	elseif length(size(u))==3
 		% 2D variable
 		y=sum(reshape(sqrt(sum(u.^2,3) + epsl),numel(u)/2,1));
 	elseif length(size(u))==4
@@ -74,7 +80,9 @@ function g=grad(x)
 	else
 		u=A.eval(x(ind.i,ind.j,ind.k));
 	end
-	if length(size(u))==3
+	if length(size(u))==2
+		nor=sqrt(u.^2+epsl);
+	elseif length(size(u))==3
 		nor=repmat(sqrt(sum(u.^2,3)+epsl),[1,1,size(u,3)]);
 	elseif length(size(u))==4
 		nor=repmat(sqrt(sum(u.^2,4)+epsl),[1,1,1,size(u,4)]);
