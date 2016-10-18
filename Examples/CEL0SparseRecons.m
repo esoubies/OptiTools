@@ -80,6 +80,8 @@ P=FuncCEL0(Op.nai,lamb,[]);
 % -- Minimization of F + P
 if strcmp(alg,'fbs')
 	% with the FBS algorithm
+	params.gam=0.99/F.lip;  % gamma parameter of the FBS algorithm (must be < to 1/L where L=||A||^2, with ||A|| given by the 
+						    % field .norm of the operato
 	[xopt,infos]=AlgoFBS(x0,F,P,1,params);
 elseif strcmp(alg,'irl1')
 	% with the IRL1 algorithm

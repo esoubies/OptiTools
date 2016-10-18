@@ -115,7 +115,7 @@ if ~isfield(paramsFBS,'FTol'), paramsFBS.FTol=5e-4; end
 if ~isfield(paramsFBS,'maxiter'), paramsFBS.maxiter=10000; end
 if ~isfield(paramsFBS,'gam')
 	if isfield(F1,'lip')
-		paramsFBS.gam=1/F1.lip;
+		paramsFBS.gam=0.99/F1.lip;
 	else
 		error('In AlgoIRL1: Functional F1 do not have an implementation for the lipschitz constant of the gradient => parameter paramsFBS must have the gam field !');
 	end

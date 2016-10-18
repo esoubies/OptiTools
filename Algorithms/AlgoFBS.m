@@ -24,9 +24,9 @@ function [xopt,infos]=AlgoFBS(x0,F,G,w,params)
 %                         .pathSaveTemp -> if non empty, save intermediate estimates during the computation at the given location
 %
 %          Note: when the functional are convex and F has a Lipschitz continuous gradient, convergence is
-%                ensured by taking gam in (0,2/L] where L is the Lipschitz constant of grad(F) (see [1]).
-%                When FISTA is used [3], gam should be in (0,1/L] 
-%                For nonconvex functions [2] take gam in (0,1/L]       
+%                ensured by taking gam in (0,2/L) where L is the Lipschitz constant of grad(F) (see [1]).
+%                When FISTA is used [3], gam should be in (0,1/L) 
+%                For nonconvex functions [2] take gam in (0,1/L)       
 %
 % Output : xopt    -> Result of the optimization
 %          infos   -> information about the algorithm (structure)
