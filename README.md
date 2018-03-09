@@ -1,4 +1,7 @@
 ## OptiTools
+
+**Note:** This package is not maintained anymore. Please see the [GlobalBioIm library](https://biomedical-imaging-group.github.io/GlobalBioIm/).
+
 ### Description
   This Package contains Matlab routines for optimization. There is 4 folders:
   
